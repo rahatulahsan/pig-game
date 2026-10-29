@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap");
+
+/* COLOR PALETTE (matched to dice pips) */
+:root {
+  --red: #ec4e4e;
+  --red-dark: #c93b3b;
+  --red-soft: rgba(236, 78, 78, 0.12);
+  --ink: #2e2a33;
+  --ink-soft: #7a7280;
+  --paper: #fffaf6;
+  --panel: #fdf1ea;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  font-weight: 400;
+  height: 100vh;
+  color: var(--ink);
+  background-color: #f7e4da;
+  background-image:
+    radial-gradient(var(--red-soft) 2.5px, transparent 2.5px),
+    linear-gradient(to bottom right, #fbeee7 0%, #f3d6ca 100%);
+  background-size:
+    3.2rem 3.2rem,
+    100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LAYOUT */
+main {
+  position: relative;
+  width: 100rem;
+  height: 60rem;
+  background-color: var(--paper);
+  backdrop-filter: none;
+  filter: none;
+  box-shadow:
+    0 3rem 6rem rgba(201, 59, 59, 0.18),
+    0 0.6rem 1.5rem rgba(0, 0, 0, 0.06);
+  border-radius: 2.4rem;
+  border: 1px solid #f0e2da;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Dotted divider between players (like dice pips) */
+main::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 3rem;
+  bottom: 3rem;
+  width: 0;
+  border-left: 3px dotted rgba(236, 78, 78, 0.25);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+.player {
+  flex: 50%;
+  padding: 9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--panel);
+  transition: all 0.75s;
+}
+
+/* ELEMENTS */
+.name {
+  position: relative;
+  font-family: "Fredoka", sans-serif;
+  font-size: 3.6rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  transition: all 0.75s;
+}
+
+.score {
+  font-family: "Fredoka", sans-serif;
+  font-size: 8.5rem;
+  font-weight: 500;
+  color: var(--red);
+  margin-bottom: auto;
+  transition: all 0.75s;
+}
+
+.player--active {
+  background-color: var(--white);
+  box-shadow: inset 0 0.6rem 0 var(--red);
+}
+.player--active .name {
+  font-weight: 700;
+  color: var(--ink);
+}
+.player--active .score {
+  font-weight: 600;
+}
+
+.player--active .current {
+  opacity: 1;
+  transform: scale(1);
+  box-shadow: 0 1.2rem 2.5rem rgba(236, 78, 78, 0.35);
+}
+
+.current {
+  background-color: var(--red);
+  opacity: 0.55;
+  border-radius: 1.6rem;
+  color: var(--white);
+  width: 65%;
+  padding: 2rem;
+  text-align: center;
+  transform: scale(0.95);
+  transition: all 0.75s;
+}
+
+.current-label {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.current-score {
+  font-family: "Fredoka", sans-serif;
+  font-size: 3.8rem;
+  font-weight: 600;
+}
+
+/* ABSOLUTE POSITIONED ELEMENTS */
+.btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--ink);
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 1.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+  transition: all 0.2s;
+  z-index: 1;
+
+  background-color: white;
+  background-color: var(--white);
+  backdrop-filter: none;
+  border: 2px solid var(--red);
+
+  padding: 0.7rem 2.5rem;
+  border-radius: 50rem;
+  box-shadow:
+    0 0.5rem 0 var(--red-dark),
+    0 1.5rem 3rem rgba(236, 78, 78, 0.2);
+}
+
+.btn::first-letter {
+  font-size: 2.4rem;
+  display: inline-block;
+  margin-right: 0.7rem;
+}
+
+.btn:hover {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.btn--new {
+  top: 4rem;
+}
+.btn--roll {
+  top: 39.3rem;
+}
+.btn--hold {
+  top: 46.1rem;
+}
+
+.btn:active {
+  transform: translate(-50%, 4px);
+  box-shadow:
+    0 0.1rem 0 var(--red-dark),
+    0 0.8rem 1.5rem rgba(236, 78, 78, 0.2);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(236, 78, 78, 0.4);
+  outline-offset: 3px;
+}
+
+.dice {
+  position: absolute;
+  left: 50%;
+  top: 16.5rem;
+  transform: translateX(-50%);
+  height: 10rem;
+  border-radius: 1.6rem;
+  border: 2px solid #f1e4dd;
+  background-color: var(--white);
+  box-shadow:
+    0 2rem 4rem rgba(236, 78, 78, 0.25),
+    0 0.4rem 0 #ecdcd4;
+  z-index: 1;
+}
+
+.player--winner {
+  background-color: var(--red);
+  box-shadow: none;
+}
+
+.player--winner .name {
+  font-weight: 700;
+  color: var(--white);
+}
+
+.player--winner .score {
+  color: var(--white);
+}
+
+.player--winner .current {
+  background-color: var(--red-dark);
+}
+
+/* Utility class for hiding the dice (useful in JS) */
+.hidden {
+  display: none;
+}
