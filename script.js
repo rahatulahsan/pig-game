@@ -17,10 +17,13 @@ score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add("hidden");
 
-const scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let gameState = true;
+
+  let scores = [0, 0];
+  let currentScore = 0;
+  let activePlayer = 0;
+  let gameState = true;
+
+
 
 const switchPlayer = function(){
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -79,5 +82,23 @@ btnHold.addEventListener('click', function(){
       }
   }
   
+})
 
+
+// Resetting the game
+btnNew.addEventListener('click', function(){
+
+  document.querySelector(`.player--${activePlayer}`).classList.remove("player--winner");
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  console.log(activePlayer);
+  gameState = true;
+  document.querySelector(`.player--${activePlayer}`).classList.add("player--active");
+  //document.querySelector(`.player--1`).classList.remove("player--active");
+
+  currentScore0El.textContent = 0;
+  currentScore1El.textContent = 0;
+  score0El.textContent = 0;
+  score1El.textContent = 0;
 })
